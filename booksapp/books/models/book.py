@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Mapped
 
-from booksapp.core.models import Base
+from core.models import Base
 
 
 class Book(Base):
@@ -8,4 +8,5 @@ class Book(Base):
 
     title: Mapped[str]
 
-
+    def __str__(self):
+        return f'{self.title}'
