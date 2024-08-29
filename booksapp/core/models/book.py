@@ -15,7 +15,7 @@ class Book(Base):
     author_id: Mapped[int] = mapped_column(
         ForeignKey('authors.id')
     )
-    author: Mapped["Book"] = relationship(back_populates='books')
+    author: Mapped["Author"] = relationship(back_populates='books')
 
     def __str__(self):
         return f'{self.title}'
