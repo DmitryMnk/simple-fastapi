@@ -2,7 +2,7 @@ from typing import List
 from sqlalchemy import select
 from sqlalchemy.engine import Result
 from sqlalchemy.ext.asyncio import AsyncSession
-from books.models import Book
+from core.models import Book
 from .schemas import BookCreateSchema, BookUpdateSchema
 
 

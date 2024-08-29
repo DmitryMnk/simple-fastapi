@@ -4,7 +4,7 @@ from fastapi import APIRouter, HTTPException, status, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from watchfiles import awatch
 
-from books.models import Book
+from core.models import Book
 from .dependencies import book_by_id
 from . import crud
 from core.models import db_helper

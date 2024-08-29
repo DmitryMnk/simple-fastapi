@@ -27,4 +27,4 @@ class DB_ORM:
             yield session
             await session.close()
 
-db_helper = DB_ORM(settings.DATABASE_URL())
+db_helper = DB_ORM(settings.db_url)

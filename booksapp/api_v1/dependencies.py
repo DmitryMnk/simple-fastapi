@@ -2,7 +2,7 @@ from fastapi import Depends, status, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from api_v1 import crud
-from books.models import Book
+from core.models import Book
 from core.models import db_helper
 
 
