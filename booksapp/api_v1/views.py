@@ -1,8 +1,7 @@
 from typing import List
 
-from fastapi import APIRouter, HTTPException, status, Depends
+from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
-from watchfiles import awatch
 
 from core.models import Book
 from .dependencies import book_by_id
