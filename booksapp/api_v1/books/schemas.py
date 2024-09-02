@@ -7,8 +7,6 @@ from core.models import Author, User
 
 class BookBase(BaseModel):
     title: str
-    author: Author
-    users: List[User]
 
 class BookSchema(BookBase):
 
