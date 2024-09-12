@@ -7,11 +7,11 @@ from sqlalchemy.testing.schema import mapped_column
 
 from core.models import Base
 from core.types.user_id import UserIdType
-
 if TYPE_CHECKING:
     from .profile import Profile
     from .book import Book
     from sqlalchemy.ext.asyncio import AsyncSession
+
 
 
 class User(Base, SQLAlchemyBaseUserTable[UserIdType]):
@@ -22,7 +22,7 @@ class User(Base, SQLAlchemyBaseUserTable[UserIdType]):
     books: Mapped[List['Book']] = relationship(back_populates='users', secondary='user_books')
 
     @classmethod
-    def get_db(cls, session: AsyncSession):
+    def get_db(cls, session: "AsyncSession"):
         return SQLAlchemyUserDatabase(session, User)
 
     def __str__(self):
