@@ -1,5 +1,5 @@
 from typing import TYPE_CHECKING, List
-from fastapi_users.db import SQLAlchemyUserDatabase, SQLAlchemyBaseUserTable
+from fastapi_users_db_sqlalchemy import SQLAlchemyUserDatabase, SQLAlchemyBaseUserTable
 
 from sqlalchemy.orm import Mapped, relationship
 from sqlalchemy import String

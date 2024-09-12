@@ -1,6 +1,10 @@
 import os
 
+from pydantic import BaseModel
 from pydantic_settings import BaseSettings
+
+class AccessToken(BaseModel):
+    lifetime_seconds: int = 3600
 
 class Settings(BaseSettings):
     api_v1_prefix:str = '/api/v1'
@@ -16,6 +20,6 @@ class Settings(BaseSettings):
     access_token_expire_minutes: int = 15
     refresh_token_expire_days: int = 30
     db_url: str = f"postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-
+    access_token: AccessToken
 
 settings = Settings()
