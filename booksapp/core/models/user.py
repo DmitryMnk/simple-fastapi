@@ -1,5 +1,5 @@
 from typing import TYPE_CHECKING, List
-
+from fastapi_users.db import SQLAlchemyUserDatabase, SQLAlchemyBaseUserTable
 from sqlalchemy.orm import Mapped, relationship
 from sqlalchemy import String
 from sqlalchemy.testing.schema import mapped_column
@@ -9,7 +9,7 @@ if TYPE_CHECKING:
     from .profile import Profile
     from .book import Book
 
-class User(Base):
+class User(Base, SQLAlchemyBaseUserTable[int]):
     __tablename__ = 'users'
 
     username: Mapped[str] = mapped_column(String(40))
