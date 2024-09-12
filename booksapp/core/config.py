@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     PUBLIC_KEY: str = os.environ.get("PUBLIC_KEY")
     algorithm: str = 'RS256'
     access_token_expire_minutes: int = 15
+    refresh_token_expire_days: int = 30
     db_url: str = f"postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 
