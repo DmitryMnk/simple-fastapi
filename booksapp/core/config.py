@@ -3,8 +3,12 @@ import os
 from pydantic import BaseModel
 from pydantic_settings import BaseSettings
 
+
 class AccessToken(BaseModel):
     lifetime_seconds: int = 3600
+    reset_password_token_secret: str = os.environ.get("RESET_PASSWORD_TOKEN_SECRET")
+    verification_token_secret: str = os.environ.get("VERIFICATION_TOKEN_SECRET")
+
 
 class Settings(BaseSettings):
     api_v1_prefix:str = '/api/v1'
