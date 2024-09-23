@@ -1,1 +1,1 @@
-UserIdType = int
+UserIdType = str
