@@ -2,9 +2,8 @@ from typing import TYPE_CHECKING
 
 from fastapi import Depends
 from fastapi_users.authentication.strategy.db import DatabaseStrategy
-from sqlalchemy.sql.annotation import Annotated
 
-from api_v1.dependencies.access_tokens import get_access_tokens_db
+from api_v1.dependencies.authentication.access_tokens import get_access_tokens_db
 from core.config import settings
 
 if TYPE_CHECKING:

@@ -1,5 +1,3 @@
-
-
 from fastapi_users import FastAPIUsers
 
 from core.authentication.depebdencies import get_user_manager

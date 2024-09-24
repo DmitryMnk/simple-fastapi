@@ -4,10 +4,10 @@ from core.types.user_id import UserIdType
 
 
 class UserRead(schemas.BaseUser[UserIdType]):
-    pass
+    username: str
 
 class UserCreate(schemas.BaseUserCreate):
-    pass
+    username: str
 
 class UserUpdate(schemas.BaseUserUpdate):
-    pass
+    username: str

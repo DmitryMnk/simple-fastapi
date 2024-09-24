@@ -12,8 +12,12 @@ class UserRelationMixin:
 
     @declared_attr
     def user_id(cls) -> Mapped[int]:
-        return mapped_column(ForeignKey('users.id'))
+        return mapped_column(ForeignKey('user.id'))
 
     @declared_attr
     def user(cls) -> Mapped['User']:
         return relationship('User', back_populates=cls._user_back_populates)
+
+
+class IdIntPkMixin:
+    id: Mapped[int] = mapped_column(primary_key=True)
