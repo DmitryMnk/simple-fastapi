@@ -1,8 +1,12 @@
-from fastapi import APIRouter, Depends, Form, status, HTTPException
+from fastapi import APIRouter, Depends, Form, status, HTTPException, Request
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials, OAuth2PasswordBearer
 from jwt import InvalidTokenError
+from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse
 
 from pydantic import BaseModel
+
+
 from api_v1.users.schemas import UserSchema
 from api_v1.auth.utils import hash_password, encode_jwt, validate_password, decode_jwt, create_access_token, \
     TOKEN_TYPE_FIELD, ACCESS_TOKEN_TYPE, REFRESH_TOKEN_TYPE
@@ -11,6 +15,7 @@ from api_v1.auth.utils import hash_password, encode_jwt, validate_password, deco
 http_bearer = HTTPBearer()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='/api/v1/jwt/login')
 
+templates = Jinja2Templates(directory='api_v1/auth/templates')
 
 class TokenInfo(BaseModel):
     access_token: str
@@ -52,8 +57,8 @@ def validate_token_type(
 
 
 def validate_user(
-    username: str = Form(),
-    password: str = Form(),
+    username: str,
+    password: str,
 ):
     unauth_exc = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
@@ -130,9 +135,12 @@ def get_current_active_user(
     )
 
 
+@router.get('/login', response_class=HTMLResponse)
+async def login(request: Request):
+    return templates.TemplateResponse('auth.html', {'request': request})
 
-@router.post('/login', response_model=TokenInfo)
-def login(
+@router.post('/login/get_tokens', response_model=TokenInfo)
+def get_tokens(
     user: UserSchema = Depends(validate_user)
 ):
     jwt_payload = {
